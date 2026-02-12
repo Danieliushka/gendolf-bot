@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gendolf AI Bot — Smart AI Assistant for Telegram Groups</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--surface:#12121a;--border:#1e1e2e;--accent:#7c5cfc;--accent2:#a78bfa;--text:#e2e2e8;--muted:#8888a0;--gradient:linear-gradient(135deg,#7c5cfc,#a78bfa)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent2);text-decoration:none}
+
+/* Nav */
+nav{position:fixed;top:0;width:100%;padding:1rem 2rem;background:rgba(10,10,15,.85);backdrop-filter:blur(12px);z-index:100;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+nav .logo{font-size:1.25rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:1.5rem}
+nav ul a{color:var(--muted);font-size:.9rem;transition:color .2s}
+nav ul a:hover{color:var(--text)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative}
+.hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(124,92,252,.12),transparent 70%);top:10%;left:50%;transform:translateX(-50%);pointer-events:none}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;margin-bottom:1rem;max-width:800px}
+.hero h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.15rem;max-width:560px;margin-bottom:2.5rem}
+.btn{display:inline-block;padding:.85rem 2rem;border-radius:10px;font-weight:600;font-size:1rem;transition:transform .2s,box-shadow .2s}
+.btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 24px rgba(124,92,252,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,92,252,.45)}
+.btn-outline{border:1px solid var(--border);color:var(--text);margin-left:.75rem}
+.btn-outline:hover{border-color:var(--accent);background:rgba(124,92,252,.08)}
+
+/* Sections */
+section{padding:5rem 1.5rem;max-width:1100px;margin:0 auto}
+.section-title{text-align:center;font-size:2rem;font-weight:700;margin-bottom:.5rem}
+.section-sub{text-align:center;color:var(--muted);margin-bottom:3rem;font-size:1.05rem}
+
+/* Features */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2rem;transition:border-color .3s,transform .3s}
+.feature-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.feature-icon{font-size:2rem;margin-bottom:.75rem}
+.feature-card h3{font-size:1.15rem;margin-bottom:.5rem}
+.feature-card p{color:var(--muted);font-size:.92rem}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:720px;margin:0 auto}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;position:relative;transition:border-color .3s}
+.price-card.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(124,92,252,.12)}
+.price-card .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient);color:#fff;font-size:.75rem;font-weight:600;padding:.25rem 1rem;border-radius:20px}
+.price-card h3{font-size:1.3rem;margin-bottom:.25rem}
+.price-amount{font-size:2.5rem;font-weight:800;margin:.75rem 0 .25rem}
+.price-amount span{font-size:1rem;font-weight:400;color:var(--muted)}
+.price-card ul{list-style:none;margin:1.5rem 0;text-align:left}
+.price-card li{padding:.4rem 0;color:var(--muted);font-size:.92rem}
+.price-card li::before{content:'✓';color:var(--accent2);margin-right:.5rem;font-weight:700}
+.price-card .btn{width:100%;text-align:center;margin-top:.5rem}
+
+/* Contact */
+.contact{text-align:center}
+.contact p{color:var(--muted);margin-bottom:1.5rem}
+.contact a.email{font-size:1.2rem;font-weight:600;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* Footer */
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border)}
+
+@media(max-width:640px){
+  nav ul{display:none}
+  .pricing-grid{grid-template-columns:1fr}
+  section{padding:3.5rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">🧙‍♂️ Gendolf</div>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1><span>Gendolf AI Bot</span> — Smart AI Assistant for Telegram Groups</h1>
+  <p>Add an intelligent assistant to your group chat. Answer questions, remember context, moderate content, and summarize discussions — all automatically.</p>
+  <div>
+    <a href="https://t.me/PLACEHOLDER_BOT" class="btn btn-primary">Add to Your Group →</a>
+    <a href="#features" class="btn btn-outline">Learn More</a>
+  </div>
+</section>
+
+<section id="features">
+  <h2 class="section-title">Features</h2>
+  <p class="section-sub">Everything your group needs, powered by AI</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <h3>AI Q&A</h3>
+      <p>Ask anything and get intelligent, context-aware answers right in your group chat.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <h3>Group Memory</h3>
+      <p>Remembers past conversations and decisions so nothing gets lost in the scroll.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>Auto-Moderation</h3>
+      <p>Automatically detects spam, toxicity, and off-topic messages to keep your group clean.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📝</div>
+      <h3>Content Summarization</h3>
+      <p>Get concise summaries of long discussions so you never miss what matters.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>24/7 Availability</h3>
+      <p>Always online, always ready. Your group assistant never sleeps.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <h2 class="section-title">Pricing</h2>
+  <p class="section-sub">Start free, upgrade when you need more</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Free</h3>
+      <div class="price-amount">$0<span>/month</span></div>
+      <ul>
+        <li>50 messages per day</li>
+        <li>AI Q&A</li>
+        <li>Basic moderation</li>
+        <li>1 group</li>
+      </ul>
+      <a href="https://t.me/PLACEHOLDER_BOT" class="btn btn-outline">Get Started</a>
+    </div>
+    <div class="price-card featured">
+      <div class="badge">Popular</div>
+      <h3>Pro</h3>
+      <div class="price-amount">$5<span>/month</span></div>
+      <ul>
+        <li>Unlimited messages</li>
+        <li>Group Memory</li>
+        <li>Content Summarization</li>
+        <li>Advanced moderation</li>
+        <li>Unlimited groups</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="https://t.me/PLACEHOLDER_BOT" class="btn btn-primary">Upgrade to Pro</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="section-title">Get in Touch</h2>
+  <p>Questions, feedback, or partnership inquiries?</p>
+  <a href="mailto:gendolf@agentmail.to" class="email">gendolf@agentmail.to</a>
+</section>
+
+<footer>
+  <p>© 2026 Gendolf AI Bot. Built with 🧙‍♂️ magic.</p>
+</footer>
+
+</body>
+</html>
